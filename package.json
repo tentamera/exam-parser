@@ -2,7 +2,6 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"vitest": "vitest",
 		"build": "run-p build:* --continue-on-error",
 		"build:typescript": "tsc --noEmit",
 		"build:webpack": "cross-env NODE_OPTIONS=\"--loader ts-node/esm\" webpack --mode=production",
