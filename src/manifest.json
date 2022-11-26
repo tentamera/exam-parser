@@ -1,23 +1,27 @@
 {
   "manifest_version": 2,
-  "name": "exam-parser",
-  "version": "1.0",
-  "description": "Parse exams :)",
+  "name": "Exam Parser",
+  "version": "1.0.0",
+  "description": "Scrape the web for exam questions.",
 	"permissions": [
 		"activeTab",
 		"https://ortrac.com/*"
 	],
-	"optional_permissions": [
-		"*://*/*"
-	],
 	"icons": {
-    "128": "icon.svg",
-    "48": "icon.svg",
-    "32": "icon.svg",
-    "16": "icon.svg"
+    "128": "icon128.png",
+    "48": "icon48.png",
+    "32": "icon32.png",
+    "24": "icon24.png",
+    "16": "icon16.png"
   },
-	"browser_action": {
-    "default_icon": "icon.svg",
+  "browser_action": {
+    "default_icon": {
+      "128": "icon128.png",
+      "48": "icon48.png",
+      "32": "icon32.png",
+      "24": "icon24.png",
+      "16": "icon16.png"
+    },
     "default_title": "Exam Parser"
   },
 	"background": {

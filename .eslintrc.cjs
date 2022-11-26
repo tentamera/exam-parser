@@ -6,6 +6,7 @@ const commonRules = {
 	'@typescript-eslint/no-unsafe-return': 'off',
 	'capitalized-comments': 'off',
 	'jsx-quotes': ['error', 'prefer-double'],
+	'object-curly-spacing': 'off',
 };
 
 module.exports = {
