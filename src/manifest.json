@@ -1,8 +1,15 @@
 {
   "manifest_version": 2,
   "name": "Exam Parser",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Scrape the web for exam questions.",
+  "author": "The Tentamera Team",
+  "homepage_url": "https://tentamera.se/",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "exam-parser@tentamera.se"
+    }
+  },
 	"permissions": [
 		"activeTab",
 		"https://ortrac.com/*"
@@ -26,10 +33,5 @@
   },
 	"background": {
     "scripts": ["background.js"]
-  },
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "exam-parser@tentamera.se"
-    }
   }
 }
