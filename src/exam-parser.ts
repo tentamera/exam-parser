@@ -63,16 +63,44 @@ const startExam = async (examId: string) => {
 
 const start = async () => {
   const examId = getExamId();
-  const res = parse(document.body.outerHTML);
-  const questionIds = new Array(res.length).fill(0).map((_, i) => `${i + 1}`);
+  const { questions: resultQuestions, courseName, quizName } = parse(document.body.outerHTML);
+  const questionIds = new Array(resultQuestions.length).fill(0).map((_, i) => `${i + 1}`);
 
   await startExam(examId);
-  const questions = await getQuestions(examId, questionIds);
+  const quizData = await getQuestions(examId, questionIds);
 
-  const data = { res, questions };
+  const questions = resultQuestions.map((resultQuestion, i) => {
+    const quizQuestion = quizData.questions[i].data;
+
+    return {
+      query: resultQuestion.text,
+      alternatives: resultQuestion.alternatives,
+      ...(quizQuestion.attachments && quizQuestion.attachments.length > 0 && {
+        images: quizQuestion.attachments.map((attachment: { fileId: string }) => ({
+          url: `https://ortrac.com/file/getfile/${attachment.fileId}`,
+        })),
+      }),
+      marked: quizQuestion.marked,
+    };
+  });
+
+  const exportData = {
+    version: '1.0',
+    folders: [
+      {
+        name: courseName,
+        collections: [
+          {
+            name: quizName,
+            questions,
+          },
+        ],
+      },
+    ],
+  };
 
   // eslint-disable-next-line no-alert
-  prompt('Here you go :)', JSON.stringify(data));
+  prompt('You\'re welcome!', JSON.stringify(exportData));
 };
 
 start()

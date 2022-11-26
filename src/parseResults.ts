@@ -1,8 +1,12 @@
 export const parse = (html: string) => {
   const parser = new DOMParser();
   const doc = parser.parseFromString(html, 'text/html');
-  const questionDivs = doc.querySelectorAll('[id^="question-"]');
 
+  const pageHeader = doc.querySelector('h1.page-header');
+  const courseName = pageHeader?.firstChild?.textContent?.trim();
+  const quizName = pageHeader?.lastChild?.textContent?.trim();
+
+  const questionDivs = doc.querySelectorAll('[id^="question-"]');
   const questionsData = Array.from(questionDivs).map(questionDiv => {
     const containerDiv = questionDiv.children[1];
     const questionTextDiv = containerDiv.children[0];
@@ -30,5 +34,5 @@ export const parse = (html: string) => {
     };
   });
 
-  return questionsData;
+  return { questions: questionsData, courseName, quizName };
 };
