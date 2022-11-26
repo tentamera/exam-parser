@@ -2,6 +2,7 @@ node_modules
 yarn.lock
 dist
 dist.zip
+publish
 test/web-ext-profile
 !test/web-ext-profile/.gitkeep
 .cache
