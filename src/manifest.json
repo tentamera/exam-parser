@@ -7,7 +7,7 @@
   "homepage_url": "https://tentamera.se/",
   "browser_specific_settings": {
     "gecko": {
-      "id": "exam-parser@tentamera.se"
+      "id": "examparser@tentamera.se"
     }
   },
 	"permissions": [
