@@ -11,13 +11,19 @@ const createUrl = (path: string, search?: string) => {
 const getExamId = () => {
   const url = new URL(window.location.href);
 
-  const id = url.searchParams.get('id');
+  const searchParamId = url.searchParams.get('id');
 
-  if (id === null) {
+  if (searchParamId !== null) {
+    return searchParamId;
+  }
+
+  const match = /\/exam\/results\/(\d+)/.exec(url.pathname);
+
+  if (!match) {
     throw new Error('Could not find exam id');
   }
 
-  return id;
+  return match[1];
 };
 
 const getQuestions = async (examId: string, questions: string[]) => {
