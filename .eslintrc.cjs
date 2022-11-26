@@ -2,6 +2,8 @@ const commonRules = {
 	'@typescript-eslint/object-curly-spacing': ['error', 'always'],
 	'@typescript-eslint/no-confusing-void-expression': 'off',
 	'@typescript-eslint/consistent-type-definitions': 'off',
+	'@typescript-eslint/no-unsafe-assignment': 'off',
+	'@typescript-eslint/no-unsafe-return': 'off',
 	'capitalized-comments': 'off',
 	'jsx-quotes': ['error', 'prefer-double'],
 };
