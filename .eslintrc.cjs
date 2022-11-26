@@ -4,6 +4,7 @@ const commonRules = {
 	'@typescript-eslint/consistent-type-definitions': 'off',
 	'@typescript-eslint/no-unsafe-assignment': 'off',
 	'@typescript-eslint/no-unsafe-return': 'off',
+	'@typescript-eslint/no-unsafe-call': 'off',
 	'capitalized-comments': 'off',
 	'jsx-quotes': ['error', 'prefer-double'],
 	'object-curly-spacing': 'off',
