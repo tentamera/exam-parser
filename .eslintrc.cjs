@@ -8,6 +8,7 @@ const commonRules = {
 	'capitalized-comments': 'off',
 	'jsx-quotes': ['error', 'prefer-double'],
 	'object-curly-spacing': 'off',
+	'no-alert': 'off',
 };
 
 module.exports = {

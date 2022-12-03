@@ -20,6 +20,7 @@ const getExamId = () => {
   const match = /\/exam\/results\/(\d+)/.exec(url.pathname);
 
   if (!match) {
+    alert('Exam not found. Go to Ortrac, select a quiz, click "Start Quiz" and then "Finish Quiz"');
     throw new Error('Could not find exam id');
   }
 
@@ -105,8 +106,7 @@ const start = async () => {
     ],
   };
 
-  // eslint-disable-next-line no-alert
-  prompt('You\'re welcome!', JSON.stringify(exportData));
+  prompt('You\'re welcome! Copy the data and import.', JSON.stringify(exportData));
 };
 
 start()
