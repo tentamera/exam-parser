@@ -79,7 +79,7 @@ const start = async () => {
     const quizQuestion = quizData.questions[i].data;
 
     return {
-      query: resultQuestion.text,
+      text: resultQuestion.text,
       alternatives: resultQuestion.alternatives,
       ...(quizQuestion.attachments && quizQuestion.attachments.length > 0 && {
         images: quizQuestion.attachments.map((attachment: { fileId: string }) => ({
