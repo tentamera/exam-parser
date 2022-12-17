@@ -1,5 +1,6 @@
 import { stringify } from 'query-string';
 import { parse } from './parseResults';
+import DOMPurify from 'dompurify';
 
 const createUrl = (path: string, search?: string) => {
   const url = new URL(window.location.href);
@@ -92,7 +93,16 @@ const start = async () => {
   const quizData = await getQuestions(examId, questionIds);
 
   const questions = resultQuestions.map((resultQuestion, i) => {
-    const quizQuestion = quizData.questions[i];
+    // Quiz questions are not returned in the same order as the result
+    const quizQuestion = quizData.questions.find(q => {
+      // Necessary since resultQuestion.text is sanitized,
+      // but quizQuestion.data.body is not
+      const questionText = DOMPurify.sanitize(q.data.body);
+      return questionText === resultQuestion.text;
+    });
+    if (quizQuestion === undefined) {
+      console.warn('Could not find quiz question', resultQuestion);
+    }
 
     return {
       text: resultQuestion.text,
