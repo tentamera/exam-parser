@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Exam Parser",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "Scrape the web for exam questions.",
   "author": "The Tentamera Team",
   "homepage_url": "https://tentamera.se/",
