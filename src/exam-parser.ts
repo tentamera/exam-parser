@@ -87,6 +87,7 @@ const start = async () => {
           url: `https://ortrac.com/file/getfile/${attachment.fileId}`,
         })),
       }),
+      explanation: resultQuestion.explanation,
       marked: quizQuestion.marked,
     };
   });

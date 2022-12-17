@@ -28,9 +28,12 @@ export const parse = (html: string) => {
         };
       });
 
+    const explanation = containerDiv.querySelector('.alert')?.innerHTML.trim();
+
     return {
       text: questionText,
       alternatives,
+      explanation,
     };
   });
 
