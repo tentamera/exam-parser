@@ -46,7 +46,22 @@ const getQuestions = async (examId: string, questions: string[]) => {
     mode: 'cors',
   });
 
-  const json = await res.json();
+  const json = await res.json() as {
+    questions: Array<{
+      bookmarked: boolean;
+      data: {
+        attachments: Array<{
+          caption: string;
+          fileId: string;
+          filename: string;
+        }>;
+        body: string;
+        options: string[];
+      };
+      number: number;
+      type: number;
+    }>;
+  };
 
   return json;
 };
@@ -77,18 +92,23 @@ const start = async () => {
   const quizData = await getQuestions(examId, questionIds);
 
   const questions = resultQuestions.map((resultQuestion, i) => {
-    const quizQuestion = quizData.questions[i].data;
+    const quizQuestion = quizData.questions[i];
 
     return {
       text: resultQuestion.text,
       alternatives: resultQuestion.alternatives,
-      ...(quizQuestion.attachments && quizQuestion.attachments.length > 0 && {
-        images: quizQuestion.attachments.map((attachment: { fileId: string }) => ({
-          url: `https://ortrac.com/file/getfile/${attachment.fileId}`,
-        })),
-      }),
       explanation: resultQuestion.explanation,
-      marked: quizQuestion.marked,
+
+      ...(quizQuestion && {
+        ...(quizQuestion.data.attachments.length > 0 && {
+          images: quizQuestion.data.attachments.map((attachment: { fileId: string }) => ({
+            url: `https://ortrac.com/file/getfile/${attachment.fileId}`,
+          })),
+        }),
+        ...(quizQuestion.bookmarked && {
+          marked: true,
+        }),
+      }),
     };
   });
 
